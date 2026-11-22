@@ -16,7 +16,26 @@ pipeline {
             steps {
                 sh 'mvn clean test surefire-report:report'
             }
-        }
-    }
+
+        stage('Sonarcube Analyse Code') {
+            environment
+
+            {
+
+               scannerHome = tool 'sonanrtool'
+              
+            }
+            steps
+            {                                            
+           withSonarQubeEnv('sonarscanner server')
+          {
+               sh  '${scannerHome}/bin/sonar-scanner
+  }
+   }    
+         {
+}        
 }
 
+    }
+}
+}
