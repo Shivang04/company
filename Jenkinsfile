@@ -1,4 +1,6 @@
-pipeline {
+pipeline
+
+{
     agent any
 
     environment {
@@ -6,36 +8,41 @@ pipeline {
     }
 
     stages {
-        stage('build code') {
-            steps {
+
+        stage('build code')
+        {
+            steps 
+            {
                 sh 'mvn clean package -Dmaven.test.skip=true'
             }
         }
 
-        stage('test code') {
-            steps {
+        stage('test code') 
+        {
+            steps
+             {
                 sh 'mvn clean test surefire-report:report'
             }
+        }
 
-        stage('Sonarcube Analyse Code') {
+        stage('Sonarcube Analyse Code')
+        {
             environment
 
             {
 
                scannerHome = tool 'sonanrtool'
-              
+
             }
             steps
-            {                                            
-           withSonarQubeEnv('sonarscanner server')
-          {
-               sh  '${scannerHome}/bin/sonar-scanner
-  }
-   }    
-         {
-}        
+            {
+
+               withSonarQubeEnv('sonarscanner server')
+           
+               sh  '${scannerHome}/bin/sonar-scanner’
+           }
+      }
 }
 
-    }
-}
-}
+}  
+
