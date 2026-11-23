@@ -31,7 +31,7 @@ pipeline
 
             {
 
-               scannerHome = tool 'sonanrtool'
+               scannerHome = tool 'sonartool'
 
             }
             steps
